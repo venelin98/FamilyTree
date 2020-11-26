@@ -53,7 +53,7 @@ Tree Tree::operator+ (const Tree& other)
 	Tree result(mergeStr(treeName, other.treeName));	//The tree resulting from the addition
 	unsigned *newId = new unsigned[other.numPeople];   //The numbers people from the second tree will have in result
 	
-	unsigned idCounter = numPeople;   //Íîìåðúò êîèòî ïîëó÷àâà ÷ëåí îò âòîðîòî äúðâî â result 
+	unsigned idCounter = numPeople;   //The numbers received by the members of the second tree in result
 	for (unsigned i = 0, j; i < other.numPeople; ++i)	//Òúðñè õîðà ñðåùàùè ñå â è 2-òå äúðâåòà è ãè îáåäèíÿâà â íîâîòî
 	{
 		for (j = 0; j < numPeople; ++j)
