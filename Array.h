@@ -5,7 +5,7 @@ template <typename T>
 class Array
 {
 private:
-	unsigned size, 	num; //Размер и борй членове
+	unsigned size, 	num; //Size and number of elements
 	T* arr;
 
 	void copy(const Array &other);
