@@ -50,11 +50,11 @@ Tree::~Tree()
 
 Tree Tree::operator+ (const Tree& other)
 {
-	Tree result(mergeStr(treeName, other.treeName));	//Дървото което ще се получи в следствие на събирането
-	unsigned *newId = new unsigned[other.numPeople];   //Номерата които ще получат хората в result
+	Tree result(mergeStr(treeName, other.treeName));	//The tree resulting from the addition
+	unsigned *newId = new unsigned[other.numPeople];   //The numbers people from the second tree will have in result
 	
-	unsigned idCounter = numPeople;   //Номерът които получава член от второто дърво в result 
-	for (unsigned i = 0, j; i < other.numPeople; ++i)	//Търси хора срещащи се в и 2-те дървета и ги обединява в новото
+	unsigned idCounter = numPeople;   //ГЌГ®Г¬ГҐГ°ГєГІ ГЄГ®ГЁГІГ® ГЇГ®Г«ГіГ·Г ГўГ  Г·Г«ГҐГ­ Г®ГІ ГўГІГ®Г°Г®ГІГ® Г¤ГєГ°ГўГ® Гў result 
+	for (unsigned i = 0, j; i < other.numPeople; ++i)	//Г’ГєГ°Г±ГЁ ГµГ®Г°Г  Г±Г°ГҐГ№Г Г№ГЁ Г±ГҐ Гў ГЁ 2-ГІГҐ Г¤ГєГ°ГўГҐГІГ  ГЁ ГЈГЁ Г®ГЎГҐГ¤ГЁГ­ГїГўГ  Гў Г­Г®ГўГ®ГІГ®
 	{
 		for (j = 0; j < numPeople; ++j)
 		{
@@ -67,11 +67,11 @@ Tree Tree::operator+ (const Tree& other)
 		if (j >= numPeople)
 			newId[i] = ++idCounter;
 	}
-	result.numPeople = idCounter;	//Броя членове на полученото дървото
+	result.numPeople = idCounter;	//ГЃГ°Г®Гї Г·Г«ГҐГ­Г®ГўГҐ Г­Г  ГЇГ®Г«ГіГ·ГҐГ­Г®ГІГ® Г¤ГєГ°ГўГ®ГІГ®
 
 	result.people.resize(result.numPeople);
-	result.people = people;   //Добавяданните на членовете от първото дърво в полученото дърво
-	for (unsigned i=0; i < other.numPeople; ++i)   //Добавяданните на членовете от второто дърво в полученото дърво
+	result.people = people;   //Г„Г®ГЎГ ГўГїГ¤Г Г­Г­ГЁГІГҐ Г­Г  Г·Г«ГҐГ­Г®ГўГҐГІГҐ Г®ГІ ГЇГєГ°ГўГ®ГІГ® Г¤ГєГ°ГўГ® Гў ГЇГ®Г«ГіГ·ГҐГ­Г®ГІГ® Г¤ГєГ°ГўГ®
+	for (unsigned i=0; i < other.numPeople; ++i)   //Г„Г®ГЎГ ГўГїГ¤Г Г­Г­ГЁГІГҐ Г­Г  Г·Г«ГҐГ­Г®ГўГҐГІГҐ Г®ГІ ГўГІГ®Г°Г®ГІГ® Г¤ГєГ°ГўГ® Гў ГЇГ®Г«ГіГ·ГҐГ­Г®ГІГ® Г¤ГєГ°ГўГ®
 	{
 		if (newId[i] >= numPeople)
 			result.people.push(other.people[i]);
@@ -82,16 +82,16 @@ Tree Tree::operator+ (const Tree& other)
 	result.relatives = relatives;
 	result.relations = relations;
 	
-	for (unsigned i=0; i < other.numPeople; ++i)   //Добавя роднините от второто дърво
+	for (unsigned i=0; i < other.numPeople; ++i)   //Г„Г®ГЎГ ГўГї Г°Г®Г¤Г­ГЁГ­ГЁГІГҐ Г®ГІ ГўГІГ®Г°Г®ГІГ® Г¤ГєГ°ГўГ®
 	{
 		if (newId[i] >= numPeople)
 		{
 			result.relatives.push(other.relatives[i]);
 			result.relations.push(other.relations[i]);
 		}
-		else   //Ако присъства и в двете дървета
+		else   //ГЂГЄГ® ГЇГ°ГЁГ±ГєГ±ГІГўГ  ГЁ Гў Г¤ГўГҐГІГҐ Г¤ГєГ°ГўГҐГІГ 
 		{
-			for (unsigned j = 0; j < other.people[i].numRel; ++j)   //Добавя към броя на роднините от първото дърво броя на роднините от второто дърво
+			for (unsigned j = 0; j < other.people[i].numRel; ++j)   //Г„Г®ГЎГ ГўГї ГЄГєГ¬ ГЎГ°Г®Гї Г­Г  Г°Г®Г¤Г­ГЁГ­ГЁГІГҐ Г®ГІ ГЇГєГ°ГўГ®ГІГ® Г¤ГєГ°ГўГ® ГЎГ°Г®Гї Г­Г  Г°Г®Г¤Г­ГЁГ­ГЁГІГҐ Г®ГІ ГўГІГ®Г°Г®ГІГ® Г¤ГєГ°ГўГ®
 			{
 				if(newId[other.relatives[i][j]] > numPeople)
 					++result.people[newId[i]].numRel;
@@ -102,7 +102,7 @@ Tree Tree::operator+ (const Tree& other)
 
 			result.relatives[newId[i]] = relatives[newId[i]];
 			result.relations[newId[i]] = relations[newId[i]];
-			result.relatives[newId[i]] += other.relatives[i];   //Роднините от второто дърво
+			result.relatives[newId[i]] += other.relatives[i];   //ГђГ®Г¤Г­ГЁГ­ГЁГІГҐ Г®ГІ ГўГІГ®Г°Г®ГІГ® Г¤ГєГ°ГўГ®
 			result.relations[newId[i]] += other.relations[i];
 		}
 	}
@@ -113,10 +113,10 @@ Tree Tree::operator+ (const Tree& other)
 
 Tree& Tree::operator+=(const Tree& other) 
 {
-	unsigned *newId = new unsigned[other.numPeople];   //Номерата които ще получат хората в result
+	unsigned *newId = new unsigned[other.numPeople];   //ГЌГ®Г¬ГҐГ°Г ГІГ  ГЄГ®ГЁГІГ® Г№ГҐ ГЇГ®Г«ГіГ·Г ГІ ГµГ®Г°Г ГІГ  Гў result
 
-	unsigned idCounter = numPeople;   //Номерът които получава член от второто дърво в result 
-	for (unsigned i = 0, j; i < other.numPeople; ++i)	//Търси хора срещащи се в и 2-те дървета и ги обединява в новото
+	unsigned idCounter = numPeople;   //ГЌГ®Г¬ГҐГ°ГєГІ ГЄГ®ГЁГІГ® ГЇГ®Г«ГіГ·Г ГўГ  Г·Г«ГҐГ­ Г®ГІ ГўГІГ®Г°Г®ГІГ® Г¤ГєГ°ГўГ® Гў result 
+	for (unsigned i = 0, j; i < other.numPeople; ++i)	//Г’ГєГ°Г±ГЁ ГµГ®Г°Г  Г±Г°ГҐГ№Г Г№ГЁ Г±ГҐ Гў ГЁ 2-ГІГҐ Г¤ГєГ°ГўГҐГІГ  ГЁ ГЈГЁ Г®ГЎГҐГ¤ГЁГ­ГїГўГ  Гў Г­Г®ГўГ®ГІГ®
 	{
 		for (j = 0; j < numPeople; ++j)
 		{
@@ -131,7 +131,7 @@ Tree& Tree::operator+=(const Tree& other)
 	}
 
 	people.resize(idCounter);
-	for (unsigned i = 0; i < other.numPeople; ++i)   //Добавяданните на членовете от второто дърво в полученото дърво
+	for (unsigned i = 0; i < other.numPeople; ++i)   //Г„Г®ГЎГ ГўГїГ¤Г Г­Г­ГЁГІГҐ Г­Г  Г·Г«ГҐГ­Г®ГўГҐГІГҐ Г®ГІ ГўГІГ®Г°Г®ГІГ® Г¤ГєГ°ГўГ® Гў ГЇГ®Г«ГіГ·ГҐГ­Г®ГІГ® Г¤ГєГ°ГўГ®
 	{
 		if (newId[i] >= numPeople)
 			people.push(other.people[i]);
@@ -139,7 +139,7 @@ Tree& Tree::operator+=(const Tree& other)
 
 	relatives.resize(idCounter);
 	relations.resize(idCounter);
-	for (unsigned i = 0; i < other.numPeople; ++i)   //Добавя роднините от второто дърво
+	for (unsigned i = 0; i < other.numPeople; ++i)   //Г„Г®ГЎГ ГўГї Г°Г®Г¤Г­ГЁГ­ГЁГІГҐ Г®ГІ ГўГІГ®Г°Г®ГІГ® Г¤ГєГ°ГўГ®
 	{
 		if (newId[i] >= numPeople)
 		{
@@ -148,9 +148,9 @@ Tree& Tree::operator+=(const Tree& other)
 				relatives[newId[i]][j] = newId[ relatives[newId[i]][j] ];
 			relations.push(other.relations[i]);
 		}
-		else   //Ако присъства и в двете дървета
+		else   //ГЂГЄГ® ГЇГ°ГЁГ±ГєГ±ГІГўГ  ГЁ Гў Г¤ГўГҐГІГҐ Г¤ГєГ°ГўГҐГІГ 
 		{
-			for (unsigned j = 0; j < other.people[i].numRel; ++j)   //Добавя към броя на роднините от първото дърво броя на роднините от второто дърво
+			for (unsigned j = 0; j < other.people[i].numRel; ++j)   //Г„Г®ГЎГ ГўГї ГЄГєГ¬ ГЎГ°Г®Гї Г­Г  Г°Г®Г¤Г­ГЁГ­ГЁГІГҐ Г®ГІ ГЇГєГ°ГўГ®ГІГ® Г¤ГєГ°ГўГ® ГЎГ°Г®Гї Г­Г  Г°Г®Г¤Г­ГЁГ­ГЁГІГҐ Г®ГІ ГўГІГ®Г°Г®ГІГ® Г¤ГєГ°ГўГ®
 			{
 				if (newId[other.relatives[i][j]] >= numPeople)
 					++people[newId[i]].numRel;
@@ -163,7 +163,7 @@ Tree& Tree::operator+=(const Tree& other)
 	}
 
 	delete[]newId;
-	numPeople = idCounter;	//Броя членове на полученото дървото
+	numPeople = idCounter;	//ГЃГ°Г®Гї Г·Г«ГҐГ­Г®ГўГҐ Г­Г  ГЇГ®Г«ГіГ·ГҐГ­Г®ГІГ® Г¤ГєГ°ГўГ®ГІГ®
 	return *this;
 }
 
@@ -297,7 +297,7 @@ void Tree::addRelation(const unsigned firstId, const Relation type, const unsign
 		return;
 
 	unsigned i = 0;
-	for (; i < people[firstId].numRel; ++i)	  //Ако вече са роднини
+	for (; i < people[firstId].numRel; ++i)	  //ГЂГЄГ® ГўГҐГ·ГҐ Г±Г  Г°Г®Г¤Г­ГЁГ­ГЁ
 	{
 		if (relatives[firstId][i] == secondId)
 		{
@@ -380,8 +380,8 @@ void Tree::removeRelation(const char* firstName, const char* secondName)
 
 void Tree::removePerson(const unsigned id)
 {
-	unsigned relId;   //Нoмер на текущия роднината
-	for (unsigned i = 0; i < people[id].numRel; ++i)	//Премахват се връзките на члена за премахване
+	unsigned relId;   //ГЌoГ¬ГҐГ° Г­Г  ГІГҐГЄГіГ№ГЁГї Г°Г®Г¤Г­ГЁГ­Г ГІГ 
+	for (unsigned i = 0; i < people[id].numRel; ++i)	//ГЏГ°ГҐГ¬Г ГµГўГ ГІ Г±ГҐ ГўГ°ГєГ§ГЄГЁГІГҐ Г­Г  Г·Г«ГҐГ­Г  Г§Г  ГЇГ°ГҐГ¬Г ГµГўГ Г­ГҐ
 	{
 		relId = relatives[id][i];
 		for (unsigned j = 0; j < people[relId].numRel; ++j)
@@ -395,7 +395,7 @@ void Tree::removePerson(const unsigned id)
 		}
 		--people[relId].numRel;
 	}
-	for (unsigned i = 0; i < people[numPeople - 2].numRel; ++i)	//Последният член взема номера на премахнатия
+	for (unsigned i = 0; i < people[numPeople - 2].numRel; ++i)	//ГЏГ®Г±Г«ГҐГ¤Г­ГЁГїГІ Г·Г«ГҐГ­ ГўГ§ГҐГ¬Г  Г­Г®Г¬ГҐГ°Г  Г­Г  ГЇГ°ГҐГ¬Г ГµГ­Г ГІГЁГї
 	{
 		relId = relatives[numPeople - 1][i];
 		for (unsigned j = 0; j < people[relId].numRel; ++j)
