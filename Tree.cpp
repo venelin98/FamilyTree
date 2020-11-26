@@ -51,10 +51,10 @@ Tree::~Tree()
 Tree Tree::operator+ (const Tree& other)
 {
 	Tree result(mergeStr(treeName, other.treeName));	//The tree resulting from the addition
-	unsigned *newId = new unsigned[other.numPeople];   //The numbers people from the second tree will have in result
+	unsigned *newId = new unsigned[other.numPeople];   //The numbers people from the II tree will have in result
 	
-	unsigned idCounter = numPeople;   //The numbers received by the members of the second tree in result
-	for (unsigned i = 0, j; i < other.numPeople; ++i)	//Òúðñè õîðà ñðåùàùè ñå â è 2-òå äúðâåòà è ãè îáåäèíÿâà â íîâîòî
+	unsigned idCounter = numPeople;   //The numbers received by the members of the II tree in result
+	for (unsigned i = 0, j; i < other.numPeople; ++i)	//Searches for people present in both trees and gives them the same number in result
 	{
 		for (j = 0; j < numPeople; ++j)
 		{
@@ -67,11 +67,11 @@ Tree Tree::operator+ (const Tree& other)
 		if (j >= numPeople)
 			newId[i] = ++idCounter;
 	}
-	result.numPeople = idCounter;	//Áðîÿ ÷ëåíîâå íà ïîëó÷åíîòî äúðâîòî
+	result.numPeople = idCounter;	//The number of members the resulting tree has
 
 	result.people.resize(result.numPeople);
-	result.people = people;   //Äîáàâÿäàííèòå íà ÷ëåíîâåòå îò ïúðâîòî äúðâî â ïîëó÷åíîòî äúðâî
-	for (unsigned i=0; i < other.numPeople; ++i)   //Äîáàâÿäàííèòå íà ÷ëåíîâåòå îò âòîðîòî äúðâî â ïîëó÷åíîòî äúðâî
+	result.people = people;   //Adds the members of the I tree to the resulting tree
+	for (unsigned i=0; i < other.numPeople; ++i)   //Adds the members of the II tree to the resulting tree
 	{
 		if (newId[i] >= numPeople)
 			result.people.push(other.people[i]);
@@ -82,16 +82,16 @@ Tree Tree::operator+ (const Tree& other)
 	result.relatives = relatives;
 	result.relations = relations;
 	
-	for (unsigned i=0; i < other.numPeople; ++i)   //Äîáàâÿ ðîäíèíèòå îò âòîðîòî äúðâî
+	for (unsigned i=0; i < other.numPeople; ++i)   //Adds the relatives from the II tree
 	{
-		if (newId[i] >= numPeople)
+		if (newId[i] >= numPeople)   //If the member is found in the II tree but not in the I
 		{
 			result.relatives.push(other.relatives[i]);
 			result.relations.push(other.relations[i]);
 		}
-		else   //Àêî ïðèñúñòâà è â äâåòå äúðâåòà
+		else   //If he's found in both
 		{
-			for (unsigned j = 0; j < other.people[i].numRel; ++j)   //Äîáàâÿ êúì áðîÿ íà ðîäíèíèòå îò ïúðâîòî äúðâî áðîÿ íà ðîäíèíèòå îò âòîðîòî äúðâî
+			for (unsigned j = 0; j < other.people[i].numRel; ++j)   //Adds the number of relatives from the II tree to the number from the I tree
 			{
 				if(newId[other.relatives[i][j]] > numPeople)
 					++result.people[newId[i]].numRel;
@@ -102,7 +102,7 @@ Tree Tree::operator+ (const Tree& other)
 
 			result.relatives[newId[i]] = relatives[newId[i]];
 			result.relations[newId[i]] = relations[newId[i]];
-			result.relatives[newId[i]] += other.relatives[i];   //Ðîäíèíèòå îò âòîðîòî äúðâî
+			result.relatives[newId[i]] += other.relatives[i];   //The relatives from the II tree
 			result.relations[newId[i]] += other.relations[i];
 		}
 	}
