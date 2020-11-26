@@ -55,11 +55,11 @@ int main()
 		"load",             //2
 		"save",             //3
 		"addPerson",        //4
-		"addPersonWP",      //5   Добавя човек и го свърза с родителите му по въведени номера
-		"addRelation",      //6   Добавя връзка между двама членове въведени по име
-		"addRelationID",    //7   -||- по номер
+		"addPersonWP",      //5   Adds a person and connects him to his parents, by their number
+		"addRelation",      //6   Adds a relation between two people input by name
+		"addRelationID",    //7   -||- by number
 		"findID",           //8   
-		"equate",           //9   Въвежда номера на 2 дървета, първото става равно на второто
+		"equate",           //9   Enter the number of two trees, the second becomes equal to the first
 		"combine",          //10 
 		"substract",        //11
 		"removePerson",     //12
