@@ -51,10 +51,10 @@ Tree::~Tree()
 Tree Tree::operator+ (const Tree& other)
 {
 	Tree result(mergeStr(treeName, other.treeName));	//The tree resulting from the addition
-	unsigned *newId = new unsigned[other.numPeople];   //The numbers people from the II tree will have in result
+	unsigned *newId = new unsigned[other.numPeople];   //The indexes members of the II tree will have in result
 	
-	unsigned idCounter = numPeople;   //The numbers received by the members of the II tree in result
-	for (unsigned i = 0, j; i < other.numPeople; ++i)	//Searches for people present in both trees and gives them the same number in result
+	unsigned idCounter = numPeople;
+	for (unsigned i = 0, j; i < other.numPeople; ++i)	//Searches for people present in both trees and gives them the same index in result
 	{
 		for (j = 0; j < numPeople; ++j)
 		{
@@ -91,7 +91,7 @@ Tree Tree::operator+ (const Tree& other)
 		}
 		else   //If he's found in both
 		{
-			for (unsigned j = 0; j < other.people[i].numRel; ++j)   //Adds the number of relatives from the II tree to the number from the I tree
+			for (unsigned j = 0; j < other.people[i].numRel; ++j)   //Adds the number of relatives from the II to the number in the I
 			{
 				if(newId[other.relatives[i][j]] > numPeople)
 					++result.people[newId[i]].numRel;
@@ -113,10 +113,10 @@ Tree Tree::operator+ (const Tree& other)
 
 Tree& Tree::operator+=(const Tree& other) 
 {
-	unsigned *newId = new unsigned[other.numPeople];   //Íîìåðàòà êîèòî ùå ïîëó÷àò õîðàòà â result
+	unsigned *newId = new unsigned[other.numPeople];   //The indexes people from II tree will have in I tree
 
-	unsigned idCounter = numPeople;   //Íîìåðúò êîèòî ïîëó÷àâà ÷ëåí îò âòîðîòî äúðâî â result 
-	for (unsigned i = 0, j; i < other.numPeople; ++i)	//Òúðñè õîðà ñðåùàùè ñå â è 2-òå äúðâåòà è ãè îáåäèíÿâà â íîâîòî
+	unsigned idCounter = numPeople;  
+	for (unsigned i = 0, j; i < other.numPeople; ++i)	//Searches for people present in both trees and gives them the same index in I
 	{
 		for (j = 0; j < numPeople; ++j)
 		{
@@ -131,7 +131,7 @@ Tree& Tree::operator+=(const Tree& other)
 	}
 
 	people.resize(idCounter);
-	for (unsigned i = 0; i < other.numPeople; ++i)   //Äîáàâÿäàííèòå íà ÷ëåíîâåòå îò âòîðîòî äúðâî â ïîëó÷åíîòî äúðâî
+	for (unsigned i = 0; i < other.numPeople; ++i)   //Adds the members of II tree to I tree
 	{
 		if (newId[i] >= numPeople)
 			people.push(other.people[i]);
@@ -139,7 +139,7 @@ Tree& Tree::operator+=(const Tree& other)
 
 	relatives.resize(idCounter);
 	relations.resize(idCounter);
-	for (unsigned i = 0; i < other.numPeople; ++i)   //Äîáàâÿ ðîäíèíèòå îò âòîðîòî äúðâî
+	for (unsigned i = 0; i < other.numPeople; ++i)   //Adds the relatives from II
 	{
 		if (newId[i] >= numPeople)
 		{
@@ -148,9 +148,9 @@ Tree& Tree::operator+=(const Tree& other)
 				relatives[newId[i]][j] = newId[ relatives[newId[i]][j] ];
 			relations.push(other.relations[i]);
 		}
-		else   //Àêî ïðèñúñòâà è â äâåòå äúðâåòà
+		else   //If the member is present in both trees
 		{
-			for (unsigned j = 0; j < other.people[i].numRel; ++j)   //Äîáàâÿ êúì áðîÿ íà ðîäíèíèòå îò ïúðâîòî äúðâî áðîÿ íà ðîäíèíèòå îò âòîðîòî äúðâî
+			for (unsigned j = 0; j < other.people[i].numRel; ++j)   //Adds the number of relatives from the II to the number in the I
 			{
 				if (newId[other.relatives[i][j]] >= numPeople)
 					++people[newId[i]].numRel;
@@ -163,7 +163,7 @@ Tree& Tree::operator+=(const Tree& other)
 	}
 
 	delete[]newId;
-	numPeople = idCounter;	//Áðîÿ ÷ëåíîâå íà ïîëó÷åíîòî äúðâîòî
+	numPeople = idCounter;	//Number of members in I tree
 	return *this;
 }
 
@@ -297,7 +297,7 @@ void Tree::addRelation(const unsigned firstId, const Relation type, const unsign
 		return;
 
 	unsigned i = 0;
-	for (; i < people[firstId].numRel; ++i)	  //Àêî âå÷å ñà ðîäíèíè
+	for (; i < people[firstId].numRel; ++i)	  //��� ���� �� �������
 	{
 		if (relatives[firstId][i] == secondId)
 		{
@@ -380,8 +380,8 @@ void Tree::removeRelation(const char* firstName, const char* secondName)
 
 void Tree::removePerson(const unsigned id)
 {
-	unsigned relId;   //Íoìåð íà òåêóùèÿ ðîäíèíàòà
-	for (unsigned i = 0; i < people[id].numRel; ++i)	//Ïðåìàõâàò ñå âðúçêèòå íà ÷ëåíà çà ïðåìàõâàíå
+	unsigned relId;   //�o��� �� ������� ���������
+	for (unsigned i = 0; i < people[id].numRel; ++i)	//��������� �� �������� �� ����� �� ����������
 	{
 		relId = relatives[id][i];
 		for (unsigned j = 0; j < people[relId].numRel; ++j)
@@ -395,7 +395,7 @@ void Tree::removePerson(const unsigned id)
 		}
 		--people[relId].numRel;
 	}
-	for (unsigned i = 0; i < people[numPeople - 2].numRel; ++i)	//Ïîñëåäíèÿò ÷ëåí âçåìà íîìåðà íà ïðåìàõíàòèÿ
+	for (unsigned i = 0; i < people[numPeople - 2].numRel; ++i)	//���������� ���� ����� ������ �� �����������
 	{
 		relId = relatives[numPeople - 1][i];
 		for (unsigned j = 0; j < people[relId].numRel; ++j)
