@@ -6,8 +6,8 @@ How to use:
  Input one of the following commands:
   "quit" - close the program
 	"rename"(Space/Enter)ID(space/Enter)newName(Space/Enter) - Renames a tree
-	"load",             
-	"save",             
+	"load"(Space/Enter)ID - Loads a tree based on its name
+	"save"(Space/Enter)ID - Saves a tree based on its name
 	"addPerson",        
 	"addPersonWP",      
 	"addRelation",      
