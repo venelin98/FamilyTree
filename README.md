@@ -5,7 +5,7 @@ The program works with an array of trees numbered from 0. In order do execute a 
 How to use:
  Input one of the following commands:
   "quit" - close the program
-	"rename"(Space/Enter)ID(space/Enter)newName(Space/Enter) - Renames a tree
+	"rename"(Space/Enter)ID(space/Enter)NewName(Space/Enter) - Renames a tree
 	"load"(Space/Enter)ID - Loads a tree based on its name
 	"save"(Space/Enter)ID - Saves a tree based on its name
 	"addPerson",        
@@ -19,7 +19,7 @@ How to use:
 	"removePerson",     
 	"removePersonID",  
 	"removeRelation",   
-	"removeRelationID", 
-	"addTree",          
+	"removeRelationID",
+	"addTree"(Space/Enter)TreeName - Adds a tree to the arry
 	"printRelatives",  
 	"printMember"
