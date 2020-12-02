@@ -2,6 +2,7 @@
 
 The program works with an array of trees numbered from 0. In order do execute a command on a tree you need to enter its number(treeID).
 (S/E) = (Space/Enter)
+
 Relations are as followed and cap sensitive:
 
 	Father
