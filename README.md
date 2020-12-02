@@ -4,6 +4,7 @@ The program works with an array of trees numbered from 0. In order do execute a 
 (S/E) = (Space/Enter)
 
 How to use - input one of the following commands:
+
  	"quit" - close the program
 	
 	"rename" (S/E) treeID (S/E) NewName (S/E) - Renames a tree
