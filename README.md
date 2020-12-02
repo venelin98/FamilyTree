@@ -26,7 +26,7 @@ How to use - input one of the following commands:
 	"removePersonID",  
 	"removeRelation",   
 	"removeRelationID"
-	"addTree" (S/E) TreeName (S/E) - Adds a tree to the arry
+	"addTree" (S/E) TreeName (S/E) - Adds a tree to the array
 	
 	"printRelatives",  
 	"printMember"
