@@ -15,8 +15,8 @@ How to use - input one of the following commands:
 	
 	"addPerson" (S/E) treeID (S/E) BirthDay (S/E) BirthMonth (S/E) BirthYear (S/E) PersonSex (S/E) - Add a person to a tree with treeID with a birthday on BirthDay.BirthMonth.BirthYear and sex (PersonSex) 0 = Male 1 = Female
 	
-	"addPersonWP",      
-	"addRelation",      
+	"addPersonWP" (S/E) treeID (S/E) BirthDay (S/E) BirthMonth (S/E) BirthYear (S/E) PersonSex (S/E) FatherID (S/E) MotherID - The same as addPerson but adds father and mother
+	"addRelation" (S/E) 
 	"addRelationID",    
 	"findID",           
 	"equate",           
