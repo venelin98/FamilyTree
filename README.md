@@ -33,8 +33,10 @@ How to use - input one of the following commands:
 	"addPersonWP" (S/E) treeID (S/E) BirthDay (S/E) BirthMonth (S/E) BirthYear (S/E) PersonSex (S/E) FatherID (S/E) MotherID - The same as addPerson but adds father and motherbased on their IDs
 	
 	"addRelation" (S/E) FirstRelativeName (S/E) Relation  (S/E) SecondRelativeName - Adds a relation betwean two members based on their full names
-	"addRelationID",    
-	"findID",           
+	
+	"addRelationID" (S/E) FirstRelativeID (S/E) Relation  (S/E) SecondRelativeID - Same as addElation but based on ID
+	
+	"findID"           
 	"equate",           
 	"combine",          
 	"substract",        
