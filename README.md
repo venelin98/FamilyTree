@@ -22,21 +22,21 @@ How to use - input one of the following commands:
 
  	"quit" - close the program
 	
-	"rename" (S/E) treeID (S/E) NewName (S/E) - Renames a tree
+	"rename" (S/E) TreeID (S/E) NewName (S/E) - Renames a tree
 	
-	"load" (S/E) treeID (S/E) - Loads a tree based on its name
+	"load" (S/E) TreeID (S/E) - Loads a tree based on its name
 	
-	"save" (S/E) treeID (S/E) - Saves a tree based on its name
+	"save" (S/E) TreeID (S/E) - Saves a tree based on its name
 	
-	"addPerson" (S/E) treeID (S/E) BirthDay (S/E) BirthMonth (S/E) BirthYear (S/E) PersonSex (S/E) - Add a person to a tree with treeID with a birthday on BirthDay.BirthMonth.BirthYear and sex (PersonSex) 0 = Male 1 = Female
+	"addPerson" (S/E) TreeID (S/E) BirthDay (S/E) BirthMonth (S/E) BirthYear (S/E) PersonSex (S/E) - Add a person to a tree with treeID with a birthday on BirthDay.BirthMonth.BirthYear and sex (PersonSex) 0 = Male 1 = Female
 	
-	"addPersonWP" (S/E) treeID (S/E) BirthDay (S/E) BirthMonth (S/E) BirthYear (S/E) PersonSex (S/E) FatherID (S/E) MotherID - The same as addPerson but adds father and motherbased on their IDs
+	"addPersonWP" (S/E) TreeID (S/E) BirthDay (S/E) BirthMonth (S/E) BirthYear (S/E) PersonSex (S/E) FatherID (S/E) MotherID - The same as addPerson but adds father and motherbased on their IDs
 	
-	"addRelation" (S/E) FirstRelativeName (S/E) Relation  (S/E) SecondRelativeName - Adds a relation betwean two members based on their full names
+	"addRelation" (S/E) TreeID (S/E) FirstRelativeName (S/E) Relation  (S/E) SecondRelativeName - Adds a relation betwean two members based on their full names
 	
-	"addRelationID" (S/E) FirstRelativeID (S/E) Relation  (S/E) SecondRelativeID - Same as addElation but based on ID
+	"addRelationID" (S/E) TreeID (S/E) FirstRelativeID (S/E) Relation  (S/E) SecondRelativeID - Same as addElation but based on ID
 	
-	"findID"           
+	"findID" (S/E) TreeID (S/E) SoughtPersonName (S/E) - Prints the ID of a person with the given name           
 	"equate",           
 	"combine",          
 	"substract",        
