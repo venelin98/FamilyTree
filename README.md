@@ -36,8 +36,9 @@ How to use - input one of the following commands:
 	
 	"addRelationID" (S/E) TreeID (S/E) FirstRelativeID (S/E) Relation  (S/E) SecondRelativeID - Same as addElation but based on ID
 	
-	"findID" (S/E) TreeID (S/E) SoughtPersonName (S/E) - Prints the ID of a person with the given name           
-	"equate",           
+	"findID" (S/E) TreeID (S/E) SoughtPersonName (S/E) - Prints the ID of a person with the given name
+	
+	"equate"  (S/E) FirstTreeID (S/E) SecondTreeID - Enter the IDs of two trees, the second one becomes equal to the first one
 	"combine",          
 	"substract",        
 	"removePerson",     
