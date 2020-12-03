@@ -38,9 +38,11 @@ How to use - input one of the following commands:
 	
 	"findID" (S/E) TreeID (S/E) SoughtPersonName (S/E) - Prints the ID of a person with the given name
 	
-	"equate"  (S/E) FirstTreeID (S/E) SecondTreeID - Enter the IDs of two trees, the second one becomes equal to the first one
-	"combine",          
-	"substract",        
+	"equate"  (S/E) FirstTreeID (S/E) SecondTreeID - Enter the IDs of two trees, the first one becomes equal to the second one
+	
+	"combine"  (S/E) FirstTreeID (S/E) SecondTreeID - Enter the IDs of two trees, the first one becomes equal to the combinatio of the two
+	
+	"substract"
 	"removePerson",     
 	"removePersonID",  
 	"removeRelation",   
