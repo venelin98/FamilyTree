@@ -44,7 +44,9 @@ How to use - input one of the following commands:
 	
 	"combine"  (S/E) FirstTreeID (S/E) SecondTreeID - Enter the IDs of two trees, the first one becomes equal to the combinatio of the two
 	
-	"substract"  (S/E) FirstTreeID (S/E) SecondTreeID - Enter the IDs of two trees, the members that are present in both trees are removed from the first tree
+	***TO DO***
+	
+	"subtract"  (S/E) FirstTreeID (S/E) SecondTreeID - Enter the IDs of two trees, the members that are present in both trees are removed from the first tree
 	
 	"removePerson", 
 	"removePersonID",  
