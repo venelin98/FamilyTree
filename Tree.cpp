@@ -48,7 +48,7 @@ Tree::~Tree()
 
 
 
-Tree Tree::operator+ (const Tree& other)
+Tree Tree::operator+ (const Tree& other)//
 {
 	Tree result(mergeStr(treeName, other.treeName));	//The tree resulting from the addition
 	unsigned *newId = new unsigned[other.numPeople];   //The indexes members of the II tree will have in result
@@ -286,18 +286,19 @@ void Tree::addPerson(const char *name, const short year, const unsigned char mon
 	++numPeople;
 }
 
-void Tree::addRelation(const char* firstName, const Relation type, const char* secondName)
+bool Tree::addRelation(const char* firstName, const Relation type, const char* secondName)
 {
-	addRelation(findId(firstName), type, findId(secondName));
+
+	return addRelation(findId(firstName), type, findId(secondName));
 }
 
-void Tree::addRelation(const unsigned firstId, const Relation type, const unsigned secondId, bool opposite)//
+bool Tree::addRelation(const unsigned firstId, const Relation type, const unsigned secondId, bool opposite)//
 {
-	if (firstId == Nobody || secondId == Nobody)
-		return;
+	if (firstId == Nobody || firstId >= numPeople || secondId == Nobody || secondId >= numPeople || type == Invalid)
+		return 0;
 
 	unsigned i = 0;
-	for (; i < people[firstId].numRel; ++i)	  //Ако вече са роднини
+	for (; i < people[firstId].numRel; ++i)	  //If they are already relatives
 	{
 		if (relatives[firstId][i] == secondId)
 		{
@@ -371,6 +372,7 @@ void Tree::addRelation(const unsigned firstId, const Relation type, const unsign
 			}
 		}
 	}
+	return 1;
 }
 
 void Tree::removeRelation(const char* firstName, const char* secondName)

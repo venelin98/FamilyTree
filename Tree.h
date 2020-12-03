@@ -28,9 +28,9 @@ class Tree
 private:
 	char *treeName;
 	unsigned numPeople;
-	Array<Person> people;  //Данните за всеки член
-	Array<Array<unsigned>> relatives;   //Роднините на всеки член
-	Array<Array<Relation>> relations;   //Роднинските връзки които има всеки член с роднините си
+	Array<Person> people;  //The data for each member
+	Array<Array<unsigned>> relatives;   //The relatives of each member
+	Array<Array<Relation>> relations;   //The type of relation each member has with his relatives
 public:
 	Tree();
 	Tree(const char *Name);
@@ -50,9 +50,9 @@ public:
 	void saveTree()const;//
 	void loadTree();//
 	void addPerson(const char *name, const short year, const unsigned char month, const unsigned char day, const bool sex, const unsigned father = Nobody, const unsigned mother = Nobody);
-	void addRelation(const char* firstName, const Relation, const char* secondName);   //Добавя нова връзка или променя съществуваща
-	void addRelation(const unsigned firstId, const Relation, const unsigned secondId, bool opposite=0);
-	void removePerson(const unsigned id);   //Премахва член и последния взема номера му
+	bool addRelation(const char* firstName, const Relation, const char* secondName);   //Adds a new relation or edits an old one. 0 - failure 1 - success
+	bool addRelation(const unsigned firstId, const Relation, const unsigned secondId, bool opposite=0);   //0 - failure 1 - success
+	void removePerson(const unsigned id);   //Removes a member and the last one takes his ID
 	void removePerson(const char* personName); 
 	void removeRelation(const unsigned firstId, const unsigned secondId);
 	void removeRelation(const char* firstName, const char* secondName);

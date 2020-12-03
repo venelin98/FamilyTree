@@ -61,7 +61,7 @@ int main()
 		"findID",           //8   
 		"equate",           //9   Enter the number of two trees, the second becomes equal to the first
 		"combine",          //10 
-		"substract",        //11
+		"subtract",        //11
 		"removePerson",     //12
 		"removePersonID",   //13
 		"removeRelation",   //14
@@ -89,36 +89,38 @@ int main()
 		default:
 			std::cout << "Unknown command, try again\n\n";
 			break;
-		case 0:
+		case 0:			//quit
 			quit = 1;
 			break;
-		case 1:
+		case 1:			//rename
+			std::cout << "Enter tree ID\n\n";
 			std::cin >> j;
-			if (trees.gSize() > j)
+			if (trees.gNum() > j)
 			{
+				std::cout << "Enter new name\n\n";
 				std::cin >> input;
 				trees[j].rename(input);
 			}
 			else
 				std::cout << "No such tree\n\n";
 			break;
-		case 2:
+		case 2:			//load
 			std::cin >> j;
-			if (trees.gSize() > j)
+			if (trees.gNum() > j)
 				trees[j].loadTree();
 			else
 				std::cout << "No such tree\n\n";
 			break;
-		case 3:
+		case 3:			//save
 			std::cin >> j;
-			if (trees.gSize() > j)
+			if (trees.gNum() > j)
 				trees[j].saveTree();
 			else
 				std::cout << "No such tree\n\n";
 			break;
-		case 4:
+		case 4:			//addPerson
 			std::cin >> j;
-			if (trees.gSize() > j)
+			if (trees.gNum() > j)
 			{
 				unsigned char day, month;
 				short year;
@@ -129,9 +131,9 @@ int main()
 			else
 				std::cout << "No such tree\n\n";
 			break;
-		case 5:
+		case 5:			//addPersonWP
 			std::cin >> j;
-			if (trees.gSize() > j)
+			if (trees.gNum() > j)
 			{
 				unsigned char day, month;
 				short year;
@@ -143,72 +145,79 @@ int main()
 			else
 				std::cout << "No such tree\n\n";
 			break;
-		case 6:
+		case 6:			//addRelation
 			std::cin >> j;
-			if (trees.gSize() > j)
+			if (trees.gNum() > j)
 			{
-				char rel[12];
-				//std::cin >> firstName >> rel >> S >> year >> sex >> father >> mother;
-				trees[j].addRelation(firstName, strToRel(rel), secondName);
+				char rel[16];
+				std::cin >> firstName >> rel >> secondName;
+				while (!strToRel(rel))
+				{
+					std::cout << "Invalid Relation, try again!\n";
+					std::cin >> rel;
+				}
+				if(!trees[j].addRelation(firstName, strToRel(rel), secondName))
+					std::cout << "Failure! One or both of the relatives don't exist.\n\n";
 			}
 			else
 				std::cout << "No such tree\n\n";
 			break;
-		case 7:
+		case 7:			//addRelationID
 			std::cin >> j;
-			if (trees.gSize() > j)
+			if (trees.gNum() > j)
 			{
 				unsigned firstId, secondId;
-				char rel[12];
+				char rel[16];
 				std::cin >> firstId >> rel >> secondId;
 				while (!strToRel(rel))
 				{
 					std::cout << "Invalid Relation, try again!\n";
 					std::cin >> rel;
 				}
-				trees[j].addRelation(firstId, strToRel(rel), secondId);
+				if(trees[j].addRelation(firstId, strToRel(rel), secondId))
+					std::cout << "Failure! One or both of the relatives don't exist.\n\n";
 			}
 			else
 				std::cout << "No such tree\n\n";
 			break;
-		case 8:
+		case 8:			//findID
 			std::cin >> j;
-			if (trees.gSize() > j)
+			if (trees.gNum() > j)
 			{
 				std::cin >> input;
 				unsigned id = trees[j].findId(input);
 				if (id == Nobody)
-					std::cout << "No such person in tree number " << j <<"\n\n";
+					std::cout << "No such person in tree " << j <<"\n\n";
 				else
 					std::cout << id << "\n\n";
 			}
 			else
 				std::cout << "No such tree\n\n";
 			break;
-		case 9:
+		case 9:			//equate
 			std::cin >> j >> q;
-			if (trees.gSize() > j && trees.gSize() > q)
-				j = q;
+			if (trees.gNum() > j && trees.gNum() > q)
+				trees[j] = trees[q];
 			else
 				std::cout << "No such tree\n\n";
 			break;
-		case 10:
+		case 10:		//combine
 			std::cin >> j >> q;
-			if (trees.gSize() > j && trees.gSize() > q)
-				j += q;
+			if (trees.gNum() > j && trees.gNum() > q)
+				trees[j] += trees[q];
 			else
 				std::cout << "No such tree\n\n";
 			break;
-		case 11:
+		case 11:		//subtract
 			std::cin >> j >> q;
-			if (trees.gSize() > j && trees.gSize() > q)
-				j -= q;
+			if (trees.gNum() > j && trees.gNum() > q)
+				trees[j] -= trees[q];
 			else
 				std::cout << "No such tree\n\n";
 			break;
-		case 12:
+		case 12:		//removePerson
 			std::cin >> j;
-			if (trees.gSize() > j)
+			if (trees.gNum() > j)
 			{
 				std::cin >> firstName;
 				if (trees[j].findId(firstName) != Nobody)
@@ -219,9 +228,9 @@ int main()
 			else
 				std::cout << "No such tree\n\n";
 			break;
-		case 13:
+		case 13:		//removePersonID
 			std::cin >> j;
-			if (trees.gSize() > j)
+			if (trees.gNum() > j)
 			{
 				std::cin >> q;
 				if (trees[j].gNumP() > q)
@@ -232,9 +241,9 @@ int main()
 			else
 				std::cout << "No such tree\n\n";
 			break;
-		case 14:
+		case 14:		//removeRelation
 			std::cin >> j;
-			if (trees.gSize() > j)
+			if (trees.gNum() > j)
 			{
 				std::cin >> firstName >> secondName;
 				if (trees[j].gNumP() > trees[j].findId(firstName) && trees[j].gNumP() > trees[j].findId(secondName))
@@ -245,9 +254,9 @@ int main()
 			else
 				std::cout << "No such tree\n\n";
 			break;
-		case 15:
+		case 15:		//removeRelationID
 			std::cin >> j;
-			if (trees.gSize() > j)
+			if (trees.gNum() > j)
 			{
 				unsigned g;
 				std::cin >> q >> g;
@@ -259,15 +268,15 @@ int main()
 			else
 				std::cout << "No such tree\n\n";
 			break;
-		case 16:
+		case 16:		//addTree
 			std::cin >> input;
 			newTree = new Tree(input);
 			trees.push(*newTree);
 			delete newTree;
 			break;
-		case 17:
+		case 17:		//printRelatives
 			std::cin >> j;
-			if (trees.gSize() > j)
+			if (trees.gNum() > j)
 			{
 				std::cin >> q;
 				if (trees[j].gNumP() > q)
@@ -276,9 +285,9 @@ int main()
 			else
 				std::cout << "No such tree\n\n";
 			break;
-		case 18:
+		case 18:		//printMember
 			std::cin >> j;
-			if (trees.gSize() > j)
+			if (trees.gNum() > j)
 			{
 				std::cin >> q;
 				if (trees[j].gNumP() > q)
