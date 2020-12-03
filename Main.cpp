@@ -8,7 +8,7 @@ int main()
 	Tree test2("Karamanovi");
 	//Tree test3("Dechkovi");
 	
-	/*test1.addPerson("Rumen", 0, 8, 1968, 0);
+	test1.addPerson("Rumen", 0, 8, 1968, 0);
 	test1.addPerson("Nadejda", 15, 12, 1972, 1);
 	test1.addRelation(0, Husband, 1);
 	test1.addPerson("Venelin", 9, 6, 1998, 0, 0, 1);
@@ -18,7 +18,7 @@ int main()
 	test1.addRelation(2, Brother, 4);
 	test1.addRelation(3, Brother, 4);
 
-	test2.addPerson("Vasil", 0, 0, 0, 0);
+	test2.addPerson("Vasil Dimitrov", 18, 5, 1941, 0);
 	test2.addPerson("Maria", 0, 0, 0, 1);
 	test2.addRelation(0, Husband, 1);
 	test2.addPerson("Dimitar", 0, 0, 0, 0, 0, 1);
@@ -29,18 +29,10 @@ int main()
 	test2.addPerson("Ioan", 0, 0, 0, 0, 2, 4);
 	test2.addPerson("Rumiana", 0, 0, 0, 1, 2, 4);
 	test2.addRelation(5, Brother, 6);
-	
-	test3 = test1;
-	test3 += test2;
-	//test3 -= test2;
 
-	test3.saveTree();*/
-	
-	
-	
+	test1.saveTree();
+	test2.saveTree();*/
 
-	/*test3.loadTree();	
-	test3.printRel(1);*/
 
 	Array<Tree> trees;
 	

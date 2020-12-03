@@ -131,7 +131,7 @@ Tree& Tree::operator+=(const Tree& other)
 	}
 
 	people.resize(idCounter);
-	for (unsigned i = 0; i < other.numPeople; ++i)   //Adds the members of II tree to I tree
+	for (unsigned i = 0; i < other.numPeople; ++i)   //Adds the member personal data of II tree to I tree
 	{
 		if (newId[i] >= numPeople)
 			people.push(other.people[i]);
@@ -139,7 +139,7 @@ Tree& Tree::operator+=(const Tree& other)
 
 	relatives.resize(idCounter);
 	relations.resize(idCounter);
-	for (unsigned i = 0; i < other.numPeople; ++i)   //Adds the relatives from II
+	for (unsigned i = 0; i < other.numPeople; ++i)   //Merges the relative data
 	{
 		if (newId[i] >= numPeople)
 		{
@@ -156,9 +156,12 @@ Tree& Tree::operator+=(const Tree& other)
 					++people[newId[i]].numRel;
 			}
 			relatives[newId[i]].resize(people[newId[i]].numRel);
+			relations[newId[i]].resize(people[newId[i]].numRel);
 			for (unsigned j = 0; j < other.people[i].numRel; ++j)
+			{
 				relatives[newId[i]][j + people[newId[i]].numRel - other.people[i].numRel] = newId[other.relatives[i][j]];
-			relations[newId[i]] += other.relations[i];
+				relations[newId[i]][j + people[newId[i]].numRel - other.people[i].numRel] = other.relations[i][j];
+			}
 		}
 	}
 
@@ -238,9 +241,9 @@ void Tree::saveTree()const
 	relationFile.close();
 }
 
-void Tree::loadTree()//reload
+void Tree::loadTree()//reload, enc
 {
-	char*  fileName = mergeStr(treeName, ".people");//looks bad
+	char*  fileName = mergeStr(treeName, ".people");//c
 	std::ifstream peopleFile(fileName, std::ios::binary);
 	delete[] fileName;
 
@@ -248,6 +251,7 @@ void Tree::loadTree()//reload
 	people.resize(numPeople);
 	for (unsigned i = 0; i < numPeople; ++i)
 		people[i].load(peopleFile);
+	people.sNum(numPeople);
 	peopleFile.close();
 
 
@@ -265,10 +269,15 @@ void Tree::loadTree()//reload
 		relatives[i].resize(people[i].numRel);
 		for (unsigned j = 0; j < people[i].numRel; ++j)
 			relativeFile.read((char*)&relatives[i][j], sizeof(relatives[i][j]));
+		relatives[i].sNum(people[i].numRel);
+
 		relations[i].resize(people[i].numRel);
 		for (unsigned j = 0; j < people[i].numRel; ++j)
 			relationFile.read((char*)&relations[i][j], sizeof(relations[i][j]));
+		relations[i].sNum(people[i].numRel);
 	}
+	relatives.sNum(numPeople);
+	relations.sNum(numPeople);
 	relativeFile.close();
 	relationFile.close();
 }

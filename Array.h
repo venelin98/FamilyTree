@@ -20,6 +20,7 @@ public:
 	void resize(unsigned toAdd = 0);
 	unsigned gSize()const;
 	unsigned gNum()const;
+	void sNum(unsigned);
 	void push(const T&);
 	void remove(const unsigned id);
 
@@ -77,6 +78,12 @@ template <typename T>
 unsigned Array<T>::gNum()const
 {
 	return num;
+}
+
+template <typename T>
+void Array<T>::sNum(unsigned newNum)
+{
+	num = newNum;
 }
 
 template <typename T>
