@@ -209,7 +209,7 @@ unsigned Tree::findId(const char* name, const short year, const unsigned char mo
 
 void Tree::saveTree()const
 {
-	char* fileName = mergeStr(treeName, ".people");   //looks bad
+	char* fileName = mergeStr(treeName, ".people");  
 	std::ofstream peopleFile(fileName, std::ios::binary);
 	delete[] fileName;
 
@@ -241,11 +241,16 @@ void Tree::saveTree()const
 	relationFile.close();
 }
 
-void Tree::loadTree()//reload, enc
+bool Tree::loadTree()
 {
 	char*  fileName = mergeStr(treeName, ".people");//c
 	std::ifstream peopleFile(fileName, std::ios::binary);
 	delete[] fileName;
+	if (peopleFile.peek() == std::ifstream::traits_type::eof())
+	{
+		peopleFile.close();
+		return 0;
+	}
 
 	peopleFile.read((char*)&numPeople, sizeof(numPeople));
 	people.resize(numPeople);
@@ -254,11 +259,10 @@ void Tree::loadTree()//reload, enc
 	people.sNum(numPeople);
 	peopleFile.close();
 
-
-	fileName = mergeStr(treeName, ".relatives");//looks bad
+	fileName = mergeStr(treeName, ".relatives");
 	std::ifstream  relativeFile(fileName, std::ios::binary);
 	delete[] fileName;
-	fileName = mergeStr(treeName, ".relations");//looks bad
+	fileName = mergeStr(treeName, ".relations");
 	std::ifstream  relationFile(fileName, std::ios::binary);
 	delete[] fileName;
 
@@ -280,6 +284,7 @@ void Tree::loadTree()//reload, enc
 	relations.sNum(numPeople);
 	relativeFile.close();
 	relationFile.close();
+	return 1;
 }
 
 void Tree::addPerson(const char *name, const short year, const unsigned char month, const unsigned char day, const bool sex, const unsigned father, const unsigned mother)
@@ -424,9 +429,9 @@ void Tree::removePerson(const unsigned id)
 	--numPeople;
 }
 
-void Tree::removePerson(const char* personName)
+void Tree::removePerson(const char* personName, const short year, const unsigned char month, const unsigned char day)
 {
-	removePerson(findId(personName));
+	removePerson(findId(personName, year, month, day));
 }
 
 void Tree::removeRelation(const unsigned firstId, const unsigned secondId)

@@ -48,12 +48,12 @@ public:
 	void rename(const char* newName);
 	unsigned findId(const char*, const short year=0, const unsigned char month=0, const unsigned char day=0)const;
 	void saveTree()const;//
-	void loadTree();//
+	bool loadTree();
 	void addPerson(const char *name, const short year, const unsigned char month, const unsigned char day, const bool sex, const unsigned father = Nobody, const unsigned mother = Nobody);
 	bool addRelation(const char* firstName, const Relation, const char* secondName);   //Adds a new relation or edits an old one. 0 - failure 1 - success
 	bool addRelation(const unsigned firstId, const Relation, const unsigned secondId, bool opposite=0);   //0 - failure 1 - success
 	void removePerson(const unsigned id);   //Removes a member and the last one takes his ID
-	void removePerson(const char* personName); 
+	void removePerson(const char* personName, const short year = 0, const unsigned char month = 0, const unsigned char day = 0);
 	void removeRelation(const unsigned firstId, const unsigned secondId);
 	void removeRelation(const char* firstName, const char* secondName);
 	void printRel(const unsigned id)const; //Prints out close relatives

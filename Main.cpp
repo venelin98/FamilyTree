@@ -4,8 +4,9 @@
 
 int main()
 {
-	/*Tree test1("Dechkovi");	Create two trees with 1 common member to test on
+	/*Tree test1("Dechkovi");	//
 	Tree test2("Karamanovi");
+	//Tree test3("Dechkovi");
 	
 	test1.addPerson("Rumen", 0, 8, 1968, 0);
 	test1.addPerson("Nadejda", 15, 12, 1972, 1);
@@ -17,7 +18,7 @@ int main()
 	test1.addRelation(2, Brother, 4);
 	test1.addRelation(3, Brother, 4);
 
-	test2.addPerson("Vasil", 18, 5, 1941, 0);
+	test2.addPerson("Vasil Dimitrov", 18, 5, 1941, 0);
 	test2.addPerson("Maria", 0, 0, 0, 1);
 	test2.addRelation(0, Husband, 1);
 	test2.addPerson("Dimitar", 0, 0, 0, 0, 0, 1);
@@ -62,7 +63,7 @@ int main()
 		"printMember",      //18
 	};
 	
-	unsigned j, q;
+	unsigned j, q;	//Indexes
 	Tree *newTree;
 	char firstName[128], secondName[128];
 	do
@@ -98,7 +99,10 @@ int main()
 		case 2:			//load
 			std::cin >> j;
 			if (trees.gNum() > j)
-				trees[j].loadTree();
+			{
+				if (!trees[j].loadTree())
+					std::cout << "File doesnt exist or is empty.\n\n";
+			}
 			else
 				std::cout << "No such tree\n\n";
 			break;
@@ -204,7 +208,7 @@ int main()
 			if (trees.gNum() > j && trees.gNum() > q)
 				trees[j] -= trees[q];
 			else
-				std::cout << "No such tree\n\n";
+				std::cout << "No such tree!\n\n";
 			break;
 		case 12:		//removePerson
 			std::cin >> j;
@@ -214,7 +218,7 @@ int main()
 				if (trees[j].findId(firstName) != Nobody)
 					trees[j].removePerson(firstName);
 				else
-					std::cout << "No such member\n\n";
+					std::cout << "No such member!\n\n";
 			}
 			else
 				std::cout << "No such tree\n\n";
@@ -227,7 +231,7 @@ int main()
 				if (trees[j].gNumP() > q)
 					trees[j].removePerson(q);
 				else
-					std::cout << "No such member\n\n";
+					std::cout << "No such member!\n\n";
 			}
 			else
 				std::cout << "No such tree\n\n";
@@ -240,10 +244,10 @@ int main()
 				if (trees[j].gNumP() > trees[j].findId(firstName) && trees[j].gNumP() > trees[j].findId(secondName))
 					trees[j].removeRelation(firstName, secondName);
 				else
-					std::cout << "No such member\n\n";
+					std::cout << "No such member!\n\n";
 			}
 			else
-				std::cout << "No such tree\n\n";
+				std::cout << "No such tree!\n\n";
 			break;
 		case 15:		//removeRelationID
 			std::cin >> j;
