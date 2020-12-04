@@ -52,6 +52,8 @@ How to use - input one of the following commands:
 	
 	"removeRelation" (S/E) TreeID (S/E) FirstName  (S/E) SecondName - Remove the relation betwean the people with the given names if they have one
 	
-	"removeRelationID"
-	"printRelatives",  
-	"printMember"
+	"removeRelationID" (S/E) TreeID (S/E) FirstName  (S/E) SecondName - Same as removeRelation but with IDs instead
+	
+	"printRelatives" (S/E) TreeID (S/E) PersonID - Print the relatives the person with the given ID in the console
+	
+	"printMember" (S/E) TreeID (S/E) PersonID - Print the personal data of a member on the console
