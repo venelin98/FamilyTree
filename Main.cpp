@@ -4,7 +4,7 @@
 
 int main()
 {
-	/*Tree test1("Dechkovi");	//
+	/*Tree test1("Dechkovi");	//Create two trees with 1 common member to test on
 	Tree test2("Karamanovi");
 	//Tree test3("Dechkovi");
 	
@@ -18,7 +18,7 @@ int main()
 	test1.addRelation(2, Brother, 4);
 	test1.addRelation(3, Brother, 4);
 
-	test2.addPerson("Vasil Dimitrov", 18, 5, 1941, 0);
+	test2.addPerson("Vasil", 18, 5, 1941, 0);
 	test2.addPerson("Maria", 0, 0, 0, 1);
 	test2.addRelation(0, Husband, 1);
 	test2.addPerson("Dimitar", 0, 0, 0, 0, 0, 1);
