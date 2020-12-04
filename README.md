@@ -46,9 +46,12 @@ How to use - input one of the following commands:
 	
 	"subtract"  (S/E) FirstTreeID (S/E) SecondTreeID - Enter the IDs of two trees, the members that are present in both trees are removed from the first tree
 	
-	"removePerson", 
-	"removePersonID",  
-	"removeRelation",   
+	"removePerson" (S/E) TreeID (S/E) Name - Remove person with the given name
+	
+	"removePersonID" (S/E) TreeID (S/E) Name - Remove person with the given ID
+	
+	"removeRelation" (S/E) TreeID (S/E) FirstName  (S/E) SecondName - Remove the relation betwean the people with the given names if they have one
+	
 	"removeRelationID"
 	"printRelatives",  
 	"printMember"
