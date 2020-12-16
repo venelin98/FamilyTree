@@ -18,7 +18,7 @@ Relations are as followed and cap sensitive:
 	ExWife
 	ExHusband
 
-How to use - input one of the following commands:
+List of commands:
 
  	"quit" - close the program
 	
