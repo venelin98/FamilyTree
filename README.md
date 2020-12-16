@@ -1,5 +1,10 @@
 # FamilyTree
 
+I wrote this program in C ++ on Visual Studio 2017, starting with a blank project. I used iostream for input and output and fstream for saving and loading trees. Instead of using vector, I chose to write a dynamic array myself. I used HxD hex editor to look for errors in the files.
+In the program, "family trees" are weighted graphs implemented through a list of neighbors. The program allows for addition, subtraction (removal of common members) and comparison of trees, saving them to and loading them from files and more.
+
+Thus large constructs consisting of multiple family trees can be created and managed using this program.
+
 # How to use
 
 The program works with an array of trees numbered from 0. In order to execute a command on a tree you need to enter its number(treeID).
