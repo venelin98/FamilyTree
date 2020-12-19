@@ -246,7 +246,7 @@ bool Tree::loadTree()
 	char*  fileName = mergeStr(treeName, ".people");//c
 	std::ifstream peopleFile(fileName, std::ios::binary);
 	delete[] fileName;
-	if (peopleFile.peek() == std::ifstream::traits_type::eof())
+	if (peopleFile.peek() == std::char_traits<char>::eof())
 	{
 		peopleFile.close();
 		return 0;
@@ -295,9 +295,9 @@ void Tree::addPerson(const char *name, const short year, const unsigned char mon
 	relatives.push(newRelative);
 	Array<Relation> newRelation;
 	relations.push(newRelation);
-	addRelation(father, Father, numPeople);
-	addRelation(mother, Mother, numPeople);
 	++numPeople;
+	addRelation(father, Father, numPeople - 1);
+	addRelation(mother, Mother, numPeople - 1);
 }
 
 bool Tree::addRelation(const char* firstName, const Relation type, const char* secondName)

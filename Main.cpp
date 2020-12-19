@@ -4,25 +4,24 @@
 
 int main()
 {
-	/*Tree test1("Dechkovi");	//Create two trees with 1 common member to test on
+	/*Tree test1("Dechkovi");	//
 	Tree test2("Karamanovi");
-	//Tree test3("Dechkovi");
 	
-	test1.addPerson("Rumen", 0, 8, 1968, 0);
-	test1.addPerson("Nadejda", 15, 12, 1972, 1);
+	test1.addPerson("Rumen", 1968, 8, 9, 0);
+	test1.addPerson("Nadejda", 1972, 12, 15, 1);
 	test1.addRelation(0, Husband, 1);
-	test1.addPerson("Venelin", 9, 6, 1998, 0, 0, 1);
-	test1.addPerson("Vasil", 16, 1, 2001, 0, 0, 1);
+	test1.addPerson("Venelin", 1998, 6, 9, 0, 0, 1);
+	test1.addPerson("Vasil", 2001, 1, 16, 0, 0, 1);
 	test1.addRelation(2, Brother, 3);
-	test1.addPerson("Maria-Veronika", 3, 11, 2009, 1, 0, 1);
+	test1.addPerson("Maria-Veronika", 2009, 9, 3, 1, 0, 1);
 	test1.addRelation(2, Brother, 4);
 	test1.addRelation(3, Brother, 4);
 
-	test2.addPerson("Vasil", 18, 5, 1941, 0);
+	test2.addPerson("Vasil Dimitrov", 1941, 5, 18, 0);
 	test2.addPerson("Maria", 0, 0, 0, 1);
 	test2.addRelation(0, Husband, 1);
 	test2.addPerson("Dimitar", 0, 0, 0, 0, 0, 1);
-	test2.addPerson("Nadejda", 15, 12, 1972, 1, 0, 1);
+	test2.addPerson("Nadejda", 1972, 12, 15, 1, 0, 1);
 	test2.addRelation(2, Brother, 3);
 	test2.addPerson("Branimira", 0, 0, 0, 1);
 	test2.addRelation(2, Husband, 4);

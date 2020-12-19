@@ -87,9 +87,9 @@ void Person::rename(const char* newName)
 
 void Person::print()const
 {
-	std::cout << name << "\nBirthday: " << day << "." << month << "." << year << "\nSex: ";
+	std::cout << name << "\nBirthday: " << (int)day << "." << (int)month << "." << year << "\nSex: ";
 	if (sex)
-		std::cout << "Female";
+		std::cout << "Female\n";
 	else
-		std::cout << "Male";
+		std::cout << "Male\n";
 }

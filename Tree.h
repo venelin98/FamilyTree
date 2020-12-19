@@ -56,8 +56,11 @@ public:
 	void removePerson(const char* personName, const short year = 0, const unsigned char month = 0, const unsigned char day = 0);
 	void removeRelation(const unsigned firstId, const unsigned secondId);
 	void removeRelation(const char* firstName, const char* secondName);
+
 	void printRel(const unsigned id)const; //Prints out close relatives
 	void printMember(const unsigned id)const;
+	void printAncestors(const unsigned id)const;
+	void printCommonAncesto(const unsigned id)const;
 
 	unsigned gNumP()const;
 	
