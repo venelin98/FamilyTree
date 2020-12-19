@@ -4,7 +4,7 @@
 
 int main()
 {
-	/*Tree test1("Dechkovi");	//
+	/*Tree test1("Dechkovi");	//Example trees,ccan be loaded with "load" command
 	Tree test2("Karamanovi");
 	
 	test1.addPerson("Rumen", 1968, 8, 9, 0);
