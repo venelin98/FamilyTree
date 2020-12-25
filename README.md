@@ -27,7 +27,7 @@ Relations are as followed and cap sensitive:
 
 List of commands:
 
- 	"quit" - close the program
+ 	"quit" (S/E) - close the program
 	
 	"addTree" (S/E) TreeName (S/E) - Adds a tree to the array
 	
@@ -61,6 +61,10 @@ List of commands:
 	
 	"removeRelationID" (S/E) TreeID (S/E) FirstName  (S/E) SecondName - Same as removeRelation but with IDs instead
 	
-	"printRelatives" (S/E) TreeID (S/E) PersonID - Print the relatives the person with the given ID in the console
+	"prtRelatives" (S/E) TreeID (S/E) PersonID - Print the relatives the person with the given ID in the console
 	
-	"printMember" (S/E) TreeID (S/E) PersonID - Print the personal data of a member on the console
+	"prtMember" (S/E) TreeID (S/E) PersonID - Print the personal data of a member on the console
+	
+	"prtCommonAncestor" (S/E) FirstPersonID (S/E) SecondPersonID (S/E)
+	
+	"prtOldestAncestor" (S/E) PersonID (S/E) 
