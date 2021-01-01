@@ -29,7 +29,7 @@ List of commands:
 
  	"quit" (S/E) - close the program
 	
-	"chooseTree" (S/E) TreeID (S/E) - Choose tree to execute commands on.
+	"chooseTree" (S/E) TreeID (S/E) - Choose tree to execute commands on
 	
 	"addTree" (S/E) TreeName (S/E) - Adds a tree to the array
 	
