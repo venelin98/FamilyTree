@@ -29,23 +29,25 @@ List of commands:
 
  	"quit" (S/E) - close the program
 	
+	"chooseTree" (S/E) TreeID (S/E) - Choose tree to execute commands on.
+	
 	"addTree" (S/E) TreeName (S/E) - Adds a tree to the array
 	
-	"rename" (S/E) TreeID (S/E) NewName (S/E) - Renames a tree
+	"rename" (S/E) NewName (S/E) - Renames a tree
 	
 	"load" (S/E) TreeID (S/E) - Loads a tree based on its name
 	
 	"save" (S/E) TreeID (S/E) - Saves a tree based on its name
 	
-	"addPerson" (S/E) TreeID (S/E) BirthDay (S/E) BirthMonth (S/E) BirthYear (S/E) PersonSex (S/E) - Add a person to a tree with treeID with a birthday on BirthDay.BirthMonth.BirthYear and sex (PersonSex) 0 = Male 1 = Female
+	"addPerson" (S/E) BirthDay (S/E) BirthMonth (S/E) BirthYear (S/E) PersonSex (S/E) - Add a person to a tree with treeID with a birthday on BirthDay.BirthMonth.BirthYear and sex (PersonSex) 0 = Male 1 = Female
 	
-	"addPersonWP" (S/E) TreeID (S/E) BirthDay (S/E) BirthMonth (S/E) BirthYear (S/E) PersonSex (S/E) FatherID (S/E) MotherID - The same as addPerson but adds father and motherbased on their IDs
+	"addPersonWP" (S/E) BirthDay (S/E) BirthMonth (S/E) BirthYear (S/E) PersonSex (S/E) FatherID (S/E) MotherID - The same as addPerson but adds father and motherbased on their IDs
 	
-	"addRelation" (S/E) TreeID (S/E) FirstRelativeName (S/E) Relation  (S/E) SecondRelativeName - Adds a relation betwean two members based on their full names
+	"addRelation" (S/E) FirstRelativeName (S/E) Relation  (S/E) SecondRelativeName - Adds a relation betwean two members based on their full names
 	
-	"addRelationID" (S/E) TreeID (S/E) FirstRelativeID (S/E) Relation  (S/E) SecondRelativeID - Same as addElation but based on ID
+	"addRelationID" (S/E) FirstRelativeID (S/E) Relation  (S/E) SecondRelativeID - Same as addElation but based on ID
 	
-	"findID" (S/E) TreeID (S/E) SoughtPersonName (S/E) - Prints the ID of a person with the given name
+	"findID" (S/E) SoughtPersonName (S/E) - Prints the ID of a person with the given name
 	
 	"equate"  (S/E) FirstTreeID (S/E) SecondTreeID - Enter the IDs of two trees, the first one becomes equal to the second one
 	
@@ -53,17 +55,17 @@ List of commands:
 	
 	"subtract"  (S/E) FirstTreeID (S/E) SecondTreeID - Enter the IDs of two trees, the members that are present in both trees are removed from the first tree
 	
-	"removePerson" (S/E) TreeID (S/E) Name - Remove person with the given name
+	"removePerson" (S/E) Name - Remove person with the given name
 	
-	"removePersonID" (S/E) TreeID (S/E) Name - Remove person with the given ID
+	"removePersonID" (S/E) Name - Remove person with the given ID
 	
-	"removeRelation" (S/E) TreeID (S/E) FirstName  (S/E) SecondName - Remove the relation betwean the people with the given names if they have one
+	"removeRelation" (S/E) FirstName  (S/E) SecondName - Remove the relation betwean the people with the given names if they have one
 	
-	"removeRelationID" (S/E) TreeID (S/E) FirstName  (S/E) SecondName - Same as removeRelation but with IDs instead
+	"removeRelationID" (S/E) FirstName  (S/E) SecondName - Same as removeRelation but with IDs instead
 	
-	"prtRelatives" (S/E) TreeID (S/E) PersonID - Print the relatives the person with the given ID in the console
+	"prtRelatives" (S/E) PersonID - Print the relatives the person with the given ID in the console
 	
-	"prtMember" (S/E) TreeID (S/E) PersonID - Print the personal data of a member on the console
+	"prtMember" (S/E) PersonID - Print the personal data of a member on the console
 	
 	"prtCommonAncestor" (S/E) FirstPersonID (S/E) SecondPersonID (S/E)
 	
