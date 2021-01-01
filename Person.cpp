@@ -89,7 +89,7 @@ void Person::print()const
 {
 	std::cout << name << "\nBirthday: " << (int)day << "." << (int)month << "." << year << "\nSex: ";
 	if (sex)
-		std::cout << "Female\n";
+		std::cout << "Female\n\n";
 	else
-		std::cout << "Male\n";
+		std::cout << "Male\n\n";
 }

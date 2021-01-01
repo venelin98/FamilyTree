@@ -13,6 +13,7 @@ public:
 	
 
 	Array();
+	Array(unsigned S);
 	//
 	Array& operator=(const Array &other);
 	~Array();
@@ -37,6 +38,14 @@ Array<T>::Array() :
 	num(0),
 	arr(nullptr)
 {}
+
+template <typename T>
+Array<T>::Array(unsigned S) :
+	size(S),
+	num(0)
+{
+	arr = new T[S];
+}
 
 template <typename T>
 Array<T>& Array<T>::operator=(const Array &other)

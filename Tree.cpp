@@ -207,6 +207,37 @@ unsigned Tree::findId(const char* name, const short year, const unsigned char mo
 	return Nobody;
 }
 
+unsigned Tree::findOldestAncestor(const unsigned &id, const bool &sex)const
+{
+	for (unsigned i = 0; i < people[id].numRel; ++i)
+	{
+		if (relations[id][i] == Son && people[ relatives[id][i] ].sex == sex)
+			return findOldestAncestor(relatives[id][i], sex);
+	}
+	return id;
+}
+
+unsigned Tree::findCommonAncestor(const unsigned firstId, const unsigned secondId)const
+{
+	Array<char> visited(numPeople);		//if a member is visited twice he's a common ancestor
+	for (unsigned i = 0; i < numPeople; ++i)
+		visited[i] = 0;
+	commonAncestorRec(firstId, visited);
+	commonAncestorRec(secondId, visited);
+
+	unsigned oldestId = Nobody;
+	short oldestBday = SHRT_MAX;
+	for (unsigned i = 0; i < numPeople; ++i)
+	{
+		if (visited[i] == 2 && people[i].year<oldestBday)
+		{
+			oldestBday = people[i].year;
+			oldestId = i;
+		}
+	}
+	return oldestId;
+}
+
 void Tree::saveTree()const
 {
 	char* fileName = mergeStr(treeName, ".people");  
@@ -458,6 +489,8 @@ void Tree::removeRelation(const unsigned firstId, const unsigned secondId)
 	}
 }
 
+
+
 void Tree::printRel(const unsigned id)const
 {
 	if (people[id].numRel == 0)
@@ -513,9 +546,29 @@ void Tree::printMember(const unsigned id)const
 	people[id].print();
 }
 
+void Tree::printOldestAncestors(const unsigned id)const
+{
+	people[findOldestAncestor(id)].print();
+	people[findOldestAncestor(id, 1)].print();
+}
+
 
 
 unsigned Tree::gNumP()const
 {
 	return numPeople;
+}
+
+
+
+void Tree::commonAncestorRec(const unsigned &id, const Array<char> &visited)const
+{
+	for (unsigned i = 0; i < people[id].numRel; ++i)
+	{
+		if (relations[id][i] == Son)
+		{
+			++visited[relatives[id][i]];
+			commonAncestorRec(relatives[id][i], visited);
+		}
+	}
 }
