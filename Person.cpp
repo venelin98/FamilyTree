@@ -53,13 +53,13 @@ void Person::save(std::ofstream &file)const
 {
 	//
 	char nameLen = strLen(name);
-	file.write((char*)&nameLen, sizeof(nameLen));
+	file.write(reinterpret_cast<char*>(&nameLen), sizeof(nameLen));
 	file.write(name, nameLen * sizeof(*name));
-	file.write((char*)&numRel, sizeof(numRel));
-	file.write((char*)&sex, sizeof(sex));
-	file.write((char*)&day, sizeof(day));
-	file.write((char*)&month, sizeof(month));
-	file.write((char*)&year, sizeof(year));
+	file.write(reinterpret_cast<char*>(&numRel), sizeof(numRel));
+	file.write(reinterpret_cast<char*>(&sex), sizeof(sex));
+	file.write(reinterpret_cast<char*>(&day), sizeof(day));
+	file.write(reinterpret_cast<char*>(&month), sizeof(month));
+	file.write(reinterpret_cast<char*>(&year), sizeof(year));
 }
 
 void Person::load(std::ifstream &file)
@@ -71,11 +71,11 @@ void Person::load(std::ifstream &file)
 	file.read(name, nameLen * sizeof(*name));
 	name[nameLen] = '\0';
 
-	file.read((char*)&numRel, sizeof(numRel));
-	file.read((char*)&sex, sizeof(sex));
-	file.read((char*)&day, sizeof(day));
-	file.read((char*)&month, sizeof(month));
-	file.read((char*)&year, sizeof(year));
+	file.read(reinterpret_cast<char*>(&numRel), sizeof(numRel));
+	file.read(reinterpret_cast<char*>(&sex), sizeof(sex));
+	file.read(reinterpret_cast<char*>(&day), sizeof(day));
+	file.read(reinterpret_cast<char*>(&month), sizeof(month));
+	file.read(reinterpret_cast<char*>(&year), sizeof(year));
 }
 
 void Person::rename(const char* newName)
