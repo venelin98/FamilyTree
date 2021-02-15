@@ -244,7 +244,7 @@ void Tree::saveTree()const
 	std::ofstream peopleFile(fileName, std::ios::binary);
 	delete[] fileName;
 
-	peopleFile.write((char*)&numPeople, sizeof(numPeople));
+	peopleFile.write(reinterpret_cast<char*>(&numPeople), sizeof(numPeople));
 	for (unsigned i = 0; i < numPeople; ++i)
 		people[i].save(peopleFile);
 	peopleFile.close();
@@ -262,11 +262,11 @@ void Tree::saveTree()const
 	{		
 		//relativeFile.write((char*)&people[i].numRel, sizeof(people[i].numRel));
 		for (unsigned j = 0; j < people[i].numRel; ++j)
-			relativeFile.write((char*)&relatives[i][j], sizeof(relatives[i][j]));
+			relativeFile.write(reinterpret_cast<char*>(&relatives[i][j]), sizeof(relatives[i][j]));
 
 		//relationFile.write((char*)&people[i].numRel, sizeof(people[i].numRel));
 		for (unsigned j = 0; j < people[i].numRel; ++j)
-			relationFile.write((char*)&relations[i][j], sizeof(relations[i][j]));
+			relationFile.write(reinterpret_cast<char*>(&relations[i][j]), sizeof(relations[i][j]));
 	}
 	relativeFile.close();
 	relationFile.close();
@@ -283,7 +283,7 @@ bool Tree::loadTree()
 		return 0;
 	}
 
-	peopleFile.read((char*)&numPeople, sizeof(numPeople));
+	peopleFile.read(reinterpret_cast<char*>(&numPeople), sizeof(numPeople));
 	people.resize(numPeople);
 	for (unsigned i = 0; i < numPeople; ++i)
 		people[i].load(peopleFile);
@@ -303,12 +303,12 @@ bool Tree::loadTree()
 	{
 		relatives[i].resize(people[i].numRel);
 		for (unsigned j = 0; j < people[i].numRel; ++j)
-			relativeFile.read((char*)&relatives[i][j], sizeof(relatives[i][j]));
+			relativeFile.read(reinterpret_cast<char*>(&relatives[i][j]), sizeof(relatives[i][j]));
 		relatives[i].sNum(people[i].numRel);
 
 		relations[i].resize(people[i].numRel);
 		for (unsigned j = 0; j < people[i].numRel; ++j)
-			relationFile.read((char*)&relations[i][j], sizeof(relations[i][j]));
+			relationFile.read(reinterpret_cast<char*>(&relations[i][j]), sizeof(relations[i][j]));
 		relations[i].sNum(people[i].numRel);
 	}
 	relatives.sNum(numPeople);
@@ -427,8 +427,8 @@ void Tree::removeRelation(const char* firstName, const char* secondName)
 
 void Tree::removePerson(const unsigned id)
 {
-	unsigned relId;   //Нoмер на текущия роднината
-	for (unsigned i = 0; i < people[id].numRel; ++i)	//Премахват се връзките на члена за премахване
+	unsigned relId;   //ГЌoГ¬ГҐГ° Г­Г  ГІГҐГЄГіГ№ГЁГї Г°Г®Г¤Г­ГЁГ­Г ГІГ 
+	for (unsigned i = 0; i < people[id].numRel; ++i)	//ГЏГ°ГҐГ¬Г ГµГўГ ГІ Г±ГҐ ГўГ°ГєГ§ГЄГЁГІГҐ Г­Г  Г·Г«ГҐГ­Г  Г§Г  ГЇГ°ГҐГ¬Г ГµГўГ Г­ГҐ
 	{
 		relId = relatives[id][i];
 		for (unsigned j = 0; j < people[relId].numRel; ++j)
@@ -442,7 +442,7 @@ void Tree::removePerson(const unsigned id)
 		}
 		--people[relId].numRel;
 	}
-	for (unsigned i = 0; i < people[numPeople - 2].numRel; ++i)	//Последният член взема номера на премахнатия
+	for (unsigned i = 0; i < people[numPeople - 2].numRel; ++i)	//ГЏГ®Г±Г«ГҐГ¤Г­ГЁГїГІ Г·Г«ГҐГ­ ГўГ§ГҐГ¬Г  Г­Г®Г¬ГҐГ°Г  Г­Г  ГЇГ°ГҐГ¬Г ГµГ­Г ГІГЁГї
 	{
 		relId = relatives[numPeople - 1][i];
 		for (unsigned j = 0; j < people[relId].numRel; ++j)
